@@ -1,0 +1,32 @@
+mac: 0.7.1
+description: Infrastructure demo
+name: demo
+version: '1.0'
+roles:
+  lb:
+    instance create:
+      configuration: demo_loadbalancer
+      environment:
+      - APP_IP: app.PRIVATE_IP
+  app:
+    instance create:
+      configuration: demo_application
+      environment:
+      - DB_IP: db.PRIVATE_IP
+  db:
+    instance create:
+      branch: master
+      configuration: demo_database
+infrastructures:
+  app:
+    name: 'app'
+    location: us-central1-c
+    role: app
+  lb:
+    name: 'lb'
+    location: us-central1-c
+    role: lb
+  db:
+    name: 'db'
+    location: us-central1-c
+    role: db
