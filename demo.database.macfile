@@ -1,0 +1,17 @@
+mac: 0.7.1
+description: Database
+name: demo_database
+version: {INF_VERSION}
+
+roles:
+  db:
+    instance create:
+      configuration: demo_database
+
+infrastructures:
+  db:
+    name: 'db'
+    location: us-central1-c
+    deployment: production
+    hardware: https://www.googleapis.com/compute/v1/projects/manageacloud-instances/zones/us-central1-f/machineTypes/f1-micro
+    role: db

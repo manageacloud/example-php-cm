@@ -1,0 +1,30 @@
+mac: 0.7.1
+description: Infrastructure demo
+name: demo
+version: {INF_VERSION}
+
+roles:
+  lb:
+    instance create:
+      configuration: demo_loadbalancer
+      environment:
+      - APP_IP: app.PRIVATE_IP
+  app:
+    instance create:
+      configuration: demo_application
+      environment:
+      - DB_IP: {DATABASE_IP}
+
+infrastructures:
+  app:
+    name: 'app'
+    location: us-central1-c
+    deployment: production
+    hardware: https://www.googleapis.com/compute/v1/projects/manageacloud-instances/zones/us-central1-f/machineTypes/f1-micro
+    role: app
+  lb:
+    name: 'lb'
+    location: us-central1-c
+    deployment: production
+    hardware: https://www.googleapis.com/compute/v1/projects/manageacloud-instances/zones/us-central1-f/machineTypes/f1-micro
+    role: lb
