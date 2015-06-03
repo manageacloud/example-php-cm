@@ -1,7 +1,7 @@
 mac: 0.7.1
 description: Infrastructure demo
 name: demo
-version: '1.0'
+version: {APP_BRANCH}
 roles:
   lb:
     instance create:
@@ -13,6 +13,7 @@ roles:
       configuration: demo_application
       environment:
       - DB_IP: db.PRIVATE_IP
+      - APP_BRANCH: {APP_BRANCH}
   db:
     instance create:
       branch: master
